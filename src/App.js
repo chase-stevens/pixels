@@ -31,13 +31,13 @@ class Pixel extends React.Component {
 class PixelGrid extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { gridSize: 2 }
+    this.state = { gridSize: 256 }
   }
 
-  createPixelGrid = () => {
+  createPixelGrid(size) {
     let grid = [];
 
-    for (let i = 0; i < 1024; i++) {
+    for (let i = 0; i < size; i++) {
       grid.push(<Pixel />);
     }
     return grid;
@@ -46,7 +46,30 @@ class PixelGrid extends React.Component {
   render() {
     return(
       <div className="PixelGrid-Wrapper">
-        {this.createPixelGrid()}
+        {this.createPixelGrid(this.state.gridSize)}
+      </div>
+    )
+  }
+}
+
+class AddingButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { counter: 0 };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState({
+      counter: this.state.counter + 1
+    });
+  }
+
+  render() {
+    return(
+      <div className="AddingButtonWrapper">
+        <button onClick={this.handleClick}>Click me</button>
+        <p> Counter: {this.state.counter} </p>
       </div>
     )
   }
@@ -60,7 +83,7 @@ class App extends Component {
         <div className="Welcome">
           <Welcome name="Chase" />
         </div>
-        <PixelGrid />
+        <AddingButton />
       </div>
     );
   }

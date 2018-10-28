@@ -11,10 +11,10 @@ class Pixel extends React.Component {
   constructor(props) {
     super(props);
     this.state = { isOn: false };
-    this.handleClick = this.handleClick.bind(this);
+    this.mouseOver = this.mouseOver.bind(this);
   }
 
-  handleClick() {
+  mouseOver() {
     this.setState(state => ({
       isOn: !state.isOn
     }));
@@ -23,10 +23,35 @@ class Pixel extends React.Component {
   render() {
     return <div
               className={this.state.isOn ? 'Pixel Blue' : 'Pixel Red'}
-              onClick={this.handleClick}
+              onMouseOver={this.mouseOver}
             ></div>
   }
 }
+
+class PixelGrid extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { gridSize: 2 }
+  }
+
+  createPixelGrid = () => {
+    let grid = [];
+
+    for (let i = 0; i < 1024; i++) {
+      grid.push(<Pixel />);
+    }
+    return grid;
+  }
+
+  render() {
+    return(
+      <div className="PixelGrid-Wrapper">
+        {this.createPixelGrid()}
+      </div>
+    )
+  }
+}
+
 
 class App extends Component {
   render() {
@@ -35,10 +60,7 @@ class App extends Component {
         <div className="Welcome">
           <Welcome name="Chase" />
         </div>
-        <div><Pixel /><Pixel /><Pixel /><Pixel /></div>
-        <div><Pixel /><Pixel /><Pixel /><Pixel /></div>
-        <div><Pixel /><Pixel /><Pixel /><Pixel /></div>
-        <div><Pixel /><Pixel /><Pixel /><Pixel /></div>
+        <PixelGrid />
       </div>
     );
   }

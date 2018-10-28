@@ -1,17 +1,22 @@
+body {
+  background-color: gray;
+}
+
 .Pixel {
   width: 16px;
   height: 16px;
   display: inline-block;
+  float: left;
+}
+
+.PixelGrid-Wrapper {
+  width: 512px;
 }
 
 .Red {
-  background-color: red;
+  background-color: black;
 }
 
 .Blue {
-  background-color: blue;
-}
-
-div {
-
+  background-color: white;
 }
